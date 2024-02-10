@@ -1,0 +1,28 @@
+# checkov-analysis.yml
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+jobs:
+  - job: CheckovAnalysis
+    displayName: "Checkov Analysis"
+    steps:
+      - task: UseDotNet@2
+        inputs:
+          packageType: "sdk"
+          version: "2.1.x"
+
+      - script: |
+          # Instalar Checkov
+          dotnet tool install -g checkov
+          # Ejecutar análisis estático
+          checkov -d IaC --output-file checkov_report.txt
+        displayName: "Run Checkov Analysis"
+
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: "$(System.DefaultWorkingDirectory)/checkov_report.txt"
+          artifact: "checkov_reports"
+        displayName: "Publish Checkov Report"

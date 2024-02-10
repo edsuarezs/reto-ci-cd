@@ -1,0 +1,36 @@
+# terraform-plan.yml
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+jobs:
+  - job: TerraformPlan
+    displayName: "Terraform Plan"
+    steps:
+      - checkout: self
+
+      - task: UseDotNet@2
+        inputs:
+          packageType: "sdk"
+          version: "2.1.x"
+
+      - script: |
+          # Instalar Terraform
+          wget -q https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip
+          unzip terraform_0.15.5_linux_amd64.zip -d /usr/local/bin/
+        displayName: "Install Terraform"
+
+      - script: |
+          # Ejecutar Terraform init
+          terraform init
+          # Generar plan
+          terraform plan -out=tfplan
+        displayName: "Generate Terraform Plan"
+
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: "$(System.DefaultWorkingDirectory)/tfplan"
+          artifact: "terraform_plans"
+        displayName: "Publish Terraform Plan"

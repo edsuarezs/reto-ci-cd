@@ -1,0 +1,19 @@
+# manual-approval.yml
+trigger:
+  - main
+
+pr:
+  - none
+
+jobs:
+  - deployment: ManualApproval
+    displayName: "Manual Approval"
+    pool:
+      vmImage: "ubuntu-latest"
+    environment: "production"
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - script: echo 'Manual approval completed'
