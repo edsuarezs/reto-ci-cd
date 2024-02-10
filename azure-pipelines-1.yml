@@ -27,5 +27,6 @@ jobs:
     inputs:
       awsCredentials: 'AWSConnection'
       regionName: 'us-east-1'
-      awsCommand: 'aws s3 list'
+      awsCommand: 'aws'
+      awsSubCommand: 's3 ls'
     displayName: 'Test AWS Connection'
