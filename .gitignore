@@ -25,6 +25,7 @@ checkov_reports/
 *.cer
 *.crt
 *.pfx
+*.csv
 
 # Ignore Visual Studio Code settings
 .vscode/
