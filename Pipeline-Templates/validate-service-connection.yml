@@ -1,18 +1,8 @@
-# validate-service-connection.yml
-trigger:
-  - master
-
-pool:
-  vmImage: "ubuntu-latest"
-
-jobs:
-  - job: ValidateServiceConnection
-    displayName: "Validate Service Connection with AWS"
-    steps:
-      - task: PowerShell@2
-        inputs:
-          targetType: "inline"
-          script: |
-            aws sts get-caller-identity
-          failOnStderr: true
-        displayName: "Test AWS Service Connection"
+steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: "inline"
+      script: |
+        aws sts get-caller-identity
+      failOnStderr: true
+    displayName: "Test AWS Service Connection"
