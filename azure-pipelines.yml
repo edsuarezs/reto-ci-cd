@@ -1,19 +1,46 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "ubuntu-latest"
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+  - stage: AWSServiceConnection
+    displayName: "Validate AWS Service Connection"
+    jobs:
+      - job: ValidateServiceConnectionAWS
+        displayName: "Run Test Service Connection"
+        steps:
+          - template: Pipeline-Templates/validate-service-connection.yml
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - stage: SecurityChecks
+    displayName: "Security Checks"
+    jobs:
+      - job: RunCheckov
+        displayName: "Run Checkov"
+        steps:
+          - template: Pipeline-Templates/checkov-analysis.yml
+
+  - stage: PlanGeneration
+    displayName: "Generación de Plan"
+    jobs:
+      - job: GenerateTerraformPlan
+        displayName: "Generate Terraform Plan"
+        steps:
+          - template: Pipeline-Templates/terraform-plan.yml
+
+  - stage: ManualApproval
+    displayName: "Aprobación Manual"
+    jobs:
+      - job: ManualApprovalJob
+        displayName: "Manual Approval Job"
+        steps:
+          - template: Pipeline-Templates/manual-approval.yml
+
+  - stage: DeployPlan
+    displayName: "Despliegue del Plan"
+    jobs:
+      - job: DeployTerraformPlan
+        displayName: "Deploy Terraform Plan"
+        steps:
+          - template: Pipeline-Templates/terraform-deploy.yml

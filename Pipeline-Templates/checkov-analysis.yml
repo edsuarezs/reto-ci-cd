@@ -1,6 +1,6 @@
 # checkov-analysis.yml
 trigger:
-  - main
+  - master
 
 pool:
   vmImage: "ubuntu-latest"
@@ -23,6 +23,6 @@ jobs:
 
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: "$(System.DefaultWorkingDirectory)/checkov_report.txt"
+          targetPath: "$(System.DefaultWorkingDirectory)/backups/analysis-reports/checkov_report.txt"
           artifact: "checkov_reports"
         displayName: "Publish Checkov Report"
