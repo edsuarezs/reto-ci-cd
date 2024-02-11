@@ -1,3 +1,4 @@
+# validate-service-connection.yml (template)
 steps:
   - task: PowerShell@2
     inputs:

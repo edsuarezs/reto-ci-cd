@@ -1,30 +1,20 @@
 # terraform-deploy.yml
-trigger:
-  - main
 
-pr:
-  - none
+steps:
+  - checkout: self
 
-jobs:
-  - job: TerraformDeploy
-    displayName: "Terraform Deploy"
-    pool:
-      vmImage: "ubuntu-latest"
-    steps:
-      - checkout: self
+  - task: UseDotNet@2
+    inputs:
+      packageType: "sdk"
+      version: "2.1.x"
 
-      - task: UseDotNet@2
-        inputs:
-          packageType: "sdk"
-          version: "2.1.x"
+  - script: |
+      # Instalar Terraform
+      wget -q https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip
+      unzip terraform_0.15.5_linux_amd64.zip -d /usr/local/bin/
+    displayName: "Install Terraform"
 
-      - script: |
-          # Instalar Terraform
-          wget -q https://releases.hashicorp.com/terraform/0.15.5/terraform_0.15.5_linux_amd64.zip
-          unzip terraform_0.15.5_linux_amd64.zip -d /usr/local/bin/
-        displayName: "Install Terraform"
-
-      - script: |
-          # Ejecutar despliegue Terraform
-          terraform apply -auto-approve tfplan
-        displayName: "Apply Terraform Plan"
+  - script: |
+      # Ejecutar despliegue Terraform
+      terraform apply -auto-approve tfplan
+    displayName: "Apply Terraform Plan"
