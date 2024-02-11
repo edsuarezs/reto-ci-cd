@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PetSecOps</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: purple;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .main-container {
+      background-color: black;
+    }
+
+    footer {
+      background-color: purple;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pet-card {
+      text-align: center;
+    }
+
+    .pet-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .button-container {
+      margin-top: 10px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .social-icons {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .social-icons li {
+      margin-right: 10px;
+    }
+
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+ <div class="main-container">
+  <header>
+    <h1 style="margin: 0;">PetSecOps</h1>
+  </header>
+
+  <div class="grid-container">
+    <div class="pet-card">
+      <img class="pet-image" src="https://leyendasmirdalirs.files.wordpress.com/2017/02/unicornio.png?w=640" alt="Unicornio">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+
+    <div class="pet-card">
+      <img class="pet-image" src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,f=auto/5d65cf33c17b54197c2a4055a3a7dbf006e015b59c63daef0f2c90577e4720ef.png" alt="Dragon">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+
+     <div class="pet-card">
+      <img class="pet-image" src="https://pbs.twimg.com/media/EOpnidcWAAEteDG.jpg" alt="Fenix">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+
+    <div class="pet-card">
+      <img class="pet-image" src="https://www.mitologia.info/wp-content/uploads/2018/02/222368.jpg" alt="Kyubi">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+
+    <div class="pet-card">
+      <img class="pet-image" src="https://w0.peakpx.com/wallpaper/505/620/HD-wallpaper-fantasy-animals-cerberus-creature-lava.jpg" alt="Cerbero">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+
+    <div class="pet-card">
+      <img class="pet-image" src="https://w0.peakpx.com/wallpaper/558/47/HD-wallpaper-gryphon-in-flight-gryphon-greek-fantasy-mythology.jpg" alt="Grifo">
+      <div class="button-container">
+        <button class="button">Info</button>
+        <button class="button">Adoptar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Contacto: info@petsecops.com | Telefono: +1 234 5678</p>
+    <ul class="social-icons">
+      <li><a href="https://facebook.com/petsecops"><i class="fab fa-facebook"></i></a></li>
+      <li><a href="https://twitter.com/petsecops"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="https://instagram.com/petsecops"><i class="fab fa-instagram"></i></a></li>
+    </ul>
+  </footer>
+</div>
+</body>
+</html>

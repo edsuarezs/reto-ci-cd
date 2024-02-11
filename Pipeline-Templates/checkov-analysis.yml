@@ -1,16 +1,16 @@
 # checkov-analysis.yml
 steps:
-  - task: UseDotNet@2
+  - task: CmdLine@2
+    displayName: Install Checkov
     inputs:
-      packageType: "sdk"
-      version: "2.1.x"
+      script: "pip3 install checkov"
 
-  - script: |
-      # Instalar Checkov
-      dotnet tool install -g checkov
-      # Ejecutar análisis estático
-      checkov -d IaC --output-file checkov_report.txt
-    displayName: "Run Checkov Analysis"
+  - task: CmdLine@2
+    displayName: Analisis Checkov
+    inputs:
+      script: |
+        checkov --directory ./Pet-Store --output junitxml > $(System.DefaultWorkingDirectory)/backups/analysis-reports/TEST-checkov-report.xml
+        ls
 
   - task: PublishPipelineArtifact@1
     inputs:
