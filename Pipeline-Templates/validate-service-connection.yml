@@ -4,6 +4,6 @@ steps:
     inputs:
       awsCredentials: "AWSConnection"
       regionName: "us-east-1"
-      awsCommand: "aws"
-      awsSubCommand: "s3 ls"
+      awsCommand: "sts"
+      awsSubCommand: "get-caller-identity"
     displayName: "Test AWS Connection"
