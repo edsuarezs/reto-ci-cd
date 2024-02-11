@@ -1,6 +1,6 @@
 # validate-service-connection.yml (template)
 steps:
-  - task: AWSCLI@2
+  - task: AWSCLI@1
     inputs:
       awsCredentials: "AWSConnection"
       regionName: "us-east-1"
