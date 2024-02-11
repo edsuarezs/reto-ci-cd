@@ -1,9 +1,8 @@
 # validate-service-connection.yml (template)
 steps:
-  - task: PowerShell@2
+  - task: AWSCLI@1
     inputs:
-      targetType: "inline"
-      script: |
-        aws sts get-caller-identity
-      failOnStderr: true
-    displayName: "Test AWS Service Connection"
+      awsCredentials: "AWSConnection"
+      regionName: "us-east-1"
+      awsSubCommand: "s3 ls"
+    displayName: "Test AWS Connection"
