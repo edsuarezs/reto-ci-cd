@@ -1,8 +1,10 @@
 # validate-service-connection.yml (template)
 steps:
-  - task: AWSCLI@1
+  - task: AWSCLI@2
     inputs:
       awsCredentials: "AWSConnection"
       regionName: "us-east-1"
-      awsSubCommand: "s3 ls"
+      awsCommand: "s3"
+      scriptType: "inline"
+      inlineScript: "ls"
     displayName: "Test AWS Connection"
